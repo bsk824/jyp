@@ -46,6 +46,7 @@ body {
 	flex-direction: column;
 	color: #fff;
 	font-family: gotham, noto;
+	font-weight: 400;
 }
 .wrap {position: relative; z-index:2;}
 .imgWrap {position: fixed; z-index:1;}
@@ -117,7 +118,7 @@ body {
 .box {
 	flex-shrink : 0;
 	width: 300px; height: 300px;
-	padding-top: 120px;
+	padding-top: 115px;
 	margin-left: 20px;
 	box-sizing: border-box;
 	align-items: center;
@@ -130,9 +131,12 @@ body {
 	transition: all .5s;
 }
 .box:first-child {margin: 0;}
-.box .title span {display: block;}
-.box .btns {display: none;}
-.box .btns a {display: block; width: 228px; height: 40px; margin: 10px auto; padding-top: 8px; box-sizing: border-box;}
+.box .title {font-size: 32px; font-weight: 400; }
+.box .title span {display: block; font-weight: 400; font-size: 18px; }
+.box .btns {display: none; margin-top: 25px;}
+.box .btns .btn2 {display: flex; width: 238px; margin: 0 auto;}
+.box .btns .btn2 a {flex: 1;margin: 0 5px;}
+.box .btns a {display: block; width: 228px; height: 40px; margin: 10px auto; padding-top: 9px; box-sizing: border-box;}
 .btnType1 {background: #000; color: #fff;}
 .btnType2 {border: 1px solid #000; color: #000;}
 .box:hover {
@@ -161,7 +165,7 @@ body {
 
 <body>
 	<div class="wrap">
-		<h1 class="logo">TOBESOFT</h1>
+		<h1 class="logo"><img src="images/logo.png" alt="TOBESOFT"></h1>
 		<p class="desc">Business Consulting Team <br> Reference</p>
 		<button type="button" class="btnMenu">메뉴</button>
 		<nav class="navWrap">
@@ -186,14 +190,20 @@ body {
 				<div class="box">
 					<p class="title">52시간 근태관리<span>h52ls</span></p>
 					<span class="btns">
-						<a href="#" class="btnType1">사이트 바로가기</a>
+						<span class="btn2">
+							<a href="#" class="btnType1">IOS</a>
+							<a href="#" class="btnType1">android</a>
+						</span>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
 				<div class="box">
 					<p class="title">개발자공유플랫폼<span>PFree</span></p>
 					<span class="btns">
-						<a href="#" class="btnType1">사이트 바로가기</a>
+						<span class="btn2">
+							<a href="https://www.naver.com" class="btnType1">IOS</a>
+							<a href="#" class="btnType1">android</a>
+						</span>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
@@ -211,6 +221,20 @@ body {
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
+				<div class="box">
+					<p class="title">레퍼런스01</p>
+					<span class="btns">
+						<a href="#" class="btnType1">사이트 바로가기</a>
+						<a href="#" class="btnType2">서비스 소개</a>
+					</span>
+				</div>
+				<div class="box">
+					<p class="title">레퍼런스02</p>
+					<span class="btns">
+						<a href="#" class="btnType1">사이트 바로가기</a>
+						<a href="#" class="btnType2">서비스 소개</a>
+					</span>
+				</div>
 			</div>
 		</div>
 		<div class="scrollBar">
@@ -222,6 +246,9 @@ body {
 		<div style="background:url('images/img4.png') no-repeat;background-size:cover;opacity: 0;"></div>
 		<div style="background:url('images/img3.png') no-repeat;background-size:cover;opacity: 0;"></div>
 		<div style="background:url('images/img2.png') no-repeat;background-size:cover;opacity: 0;"></div>
+		<div style="background:url('images/img3.png') no-repeat;background-size:cover;opacity: 0;"></div>
+		<div style="background:url('images/img2.png') no-repeat;background-size:cover;opacity: 0;"></div>
+		<div style="background:url('images/img1.png') no-repeat;background-size:cover;opacity: 0;"></div>
 		<div style="background:url('images/img1.png') no-repeat;background-size:cover;opacity: 0;"></div>
 	</div>
 	<script type="text/javascript">
