@@ -16,7 +16,9 @@ body {
 	flex-direction: column;
 	color: #fff;
 }
-.wrap {position: relative;}
+.wrap {position: relative; z-index:2;}
+.imgWrap {position: fixed; z-index:1;}
+.imgWrap div {position: fixed;top:0;right:0;bottom:0;left:0;transition: opacity .5s;}
 .logo {
 	position: absolute;
 	top: -200px; left: 0;
@@ -34,6 +36,8 @@ body {
 	border: 0;
 	font-size: 0;
 	cursor: pointer;
+	outline: none;
+	z-index: 6;
 }
 .btnMenu:after, .btnMenu:before {
 	content: "";
@@ -42,9 +46,38 @@ body {
 	width: 100%; height: 4px;
 	background: #fff;
 	margin-top: -2px;
+	transition: transform .3s, top .3s .3s;
 }
+.btnMenu.active:after,
+.btnMenu.active:before {top: 50%; transition: top .3s, transform .3s .3s;}
+.btnMenu.active:before {transform: rotate(45deg);}
+.btnMenu.active:after {transform: rotate(-45deg);}
 .btnMenu:after {top: 28%;}
 .btnMenu:before {top: 72%;}
+.btnMenu.active ~ .navWrap {
+	z-index: 1;
+	opacity: 1;
+	transition: opacity .5s;
+}
+.navWrap {
+	position: fixed;
+	top:0; right:0; bottom: 0; left: 0;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	z-index: -1;
+	transition: opacity .5s, z-index .5s .1s;
+}
+.navWrap li {
+	list-style: none;
+	text-align: center;
+	margin: 15px 0;
+}
+.navWrap li a {
+	font-size: 46px;
+}
 .itemWrap {display: flex;}
 .itemWrap .inner {
 	display: flex;
@@ -63,7 +96,7 @@ body {
 	color: #fff;
 	text-align: center;
 	vertical-align: top;
-	transition: all .3s;
+	transition: all .5s;
 }
 .box:first-child {margin: 0;}
 .box .title span {display: block;}
@@ -82,14 +115,15 @@ body {
 .scrollBar {
 	position: absolute;
 	bottom: -100px;
-	width: 290px; height: 5px;
+	width: 290px; height: 3px;
 	background: #fff;
 }
 .scrollBar .inner {
 	position: absolute;
-	top: 0; left: 0;
+	bottom: 0; left: 0;
 	width: 0; height: 5px;
 	background: #000;
+	transition: width .5s;
 }
 </style>
 </head>
@@ -99,6 +133,16 @@ body {
 		<h1 class="logo">TOBESOFT</h1>
 		<p class="desc">Business Consulting Team <br> Reference</p>
 		<button type="button" class="btnMenu">메뉴</button>
+		<nav class="navWrap">
+			<ul>
+				<li><a href="#">홈</a></li>
+				<li><a href="#">약국찾기</a></li>
+				<li><a href="#">52시간 근태관리</a></li>
+				<li><a href="#">개발자공유플랫폼</a></li>
+				<li><a href="#">DEV PACK</a></li>
+				<li><a href="#">컨설팅 표준화</a></li>
+			</ul>
+		</nav>
 		<div class="itemWrap">
 			<div class="inner">
 				<div class="box">
@@ -139,23 +183,54 @@ body {
 			</div>
 		</div>
 		<div class="scrollBar">
-			<div class="inner" style="width: 10%;"></div>
+			<div class="inner" style="width: 0;"></div>
 		</div>
 	</div>
+	<div class="imgWrap">
+		<div style="background:url('images/img5.png') no-repeat;background-size:cover;opacity: 1;"></div>
+		<div style="background:url('images/img4.png') no-repeat;background-size:cover;opacity: 0;"></div>
+		<div style="background:url('images/img3.png') no-repeat;background-size:cover;opacity: 0;"></div>
+		<div style="background:url('images/img2.png') no-repeat;background-size:cover;opacity: 0;"></div>
+		<div style="background:url('images/img1.png') no-repeat;background-size:cover;opacity: 0;"></div>
+	</div>
 	<script type="text/javascript">
+
+	var btnMenu = document.querySelector('.btnMenu');
+	btnMenu.addEventListener('click', function(){
+		this.classList.toggle('active');
+	})
+
 	var movNum = 0;
+	var maxNum = 0; 
 	var itemWrap = document.querySelector('.itemWrap');
-	var inner = itemWrap.querySelector('.inner'); 
+	var inner = itemWrap.querySelector('.inner');
+	var box = inner.querySelectorAll('.box');
+	var img = document.querySelectorAll('.imgWrap div');
+	var scrollBar = document.querySelector('.scrollBar .inner');
+	var bgShow = function(idx){
+		[].forEach.call(img, function(_this){
+			_this.style.opacity = 0;
+		});
+		img[idx].style.opacity = 1;
+	};
+	[].forEach.call(box, function(obj, idx){
+		obj.addEventListener('mouseenter', function(){
+			bgShow(idx);
+		});
+	});
 	window.addEventListener('wheel', function(){
-		
 		var relNum = itemWrap.getBoundingClientRect().width;
 		var thisNum = inner.getBoundingClientRect().width;
+		maxNum = relNum-thisNum
 		if(event.wheelDelta > 0) {
 			if(movNum != 0) movNum += 50;
 		} else {
-			if(relNum-thisNum < movNum) movNum -= 50;
+			if(maxNum < movNum) movNum -= 50;
 		}
 		inner.style.cssText = 'transform:translateX('+movNum+'px)';
+		var scrollPer = movNum / maxNum * 100;
+		if(scrollPer > 100) scrollPer = 100;
+		scrollBar.style.cssText = 'width:'+scrollPer+'%;'
 	});
 	</script>
 </body>
