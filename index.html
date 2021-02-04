@@ -5,6 +5,36 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <style type="text/css">
+@font-face {
+	font-family:'noto';
+	font-weight:400;
+	src:url(fonts/noto/NotoSansKR-Regular.eot);
+	src:url(fonts/noto/NotoSansKR-Regular.eot?#iefix) format('embedded-opentype'),
+		url(fonts/noto/NotoSansKR-Regular.woff2) format('woff2'),
+		url(fonts/noto/NotoSansKR-Regular.woff) format('woff');
+}
+@font-face {
+	font-family:'noto';
+	font-weight:500;
+	src:url(fonts/noto/NotoSansKR-Medium.eot);
+	src:url(fonts/noto/NotoSansKR-Medium.eot?#iefix) format('embedded-opentype'),
+		url(fonts/noto/NotoSansKR-Medium.woff2) format('woff2'),
+		url(fonts/noto/NotoSansKR-Medium.woff) format('woff');
+}
+@font-face {
+	font-family:'gotham';
+	font-weight:400;
+	src:url(fonts/gotham/gothambold.eot);
+	src:url(fonts/gotham/gothambold.eot?#iefix) format('embedded-opentype'),
+		url(fonts/gotham/gothambold.woff) format('woff');
+}
+@font-face {
+	font-family:'gotham';
+	font-weight:500;
+	src:url(fonts/gotham/GothamBook.eot);
+	src:url(fonts/gotham/GothamBook.eot?#iefix) format('embedded-opentype'),
+		url(fonts/gotham/GothamBook.woff) format('woff');
+}
 * {margin:0;padding:0;}
 html {overflow: hidden; background: #000;}
 a {text-decoration: none; color: #fff;}
@@ -15,6 +45,7 @@ body {
 	justify-content: center;
 	flex-direction: column;
 	color: #fff;
+	font-family: gotham, noto;
 }
 .wrap {position: relative; z-index:2;}
 .imgWrap {position: fixed; z-index:1;}
