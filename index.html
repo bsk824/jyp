@@ -115,6 +115,7 @@ body {
 .itemWrap .inner {
 	display: flex;
 	transition: all .8s;
+	white-space: nowrap;
 }
 .box {
 	flex-shrink : 0;
@@ -122,9 +123,6 @@ body {
 	padding-top: 115px;
 	margin-left: 20px;
 	box-sizing: border-box;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
 	border: 5px solid #fff;
 	color: #fff;
 	text-align: center;
@@ -259,6 +257,7 @@ body {
 
 	var movNum = 0;
 	var maxNum = 0;
+	var innerWidth = 0;
 	var wrap = document.querySelector('.wrap'); 
 	var itemWrap = document.querySelector('.itemWrap');
 	var inner = itemWrap.querySelector('.inner');
@@ -282,11 +281,11 @@ body {
 		var parent = _this.parentNode.parentNode;
 		var content = parent.querySelector('.content');
 		var clone = content.cloneNode(true);
-		console.log(clone);
 	};
 
 	[].forEach.call(box, function(obj, idx){
 		bgSet(obj);
+		innerWidth = innerWidth + obj.getBoundingClientRect().width;
 		obj.addEventListener('mouseenter', function(){
 			bgShow(idx);
 		});
@@ -294,9 +293,9 @@ body {
 	});
 	wrap.addEventListener('wheel', function(){
 		var relNum = itemWrap.getBoundingClientRect().width;
-		var thisNum = inner.getBoundingClientRect().width;
-		maxNum = relNum-thisNum
-		if(event.wheelDelta > 0) {
+		maxNum = relNum-innerWidth;
+		var wheelNum = event.wheelDelta || -event.deltaY;
+		if(wheelNum > 0) {
 			if(movNum != 0) movNum += 50;
 		} else {
 			if(maxNum < movNum) movNum -= 50;
