@@ -49,8 +49,9 @@ body {
 	font-weight: 400;
 }
 .wrap {position: relative; z-index:2;}
-.imgWrap {position: fixed; z-index:1;}
-.imgWrap div {position: fixed;top:0;right:0;bottom:0;left:0;transition: opacity .5s;}
+.bgWrap {position: fixed;top:0;right:0;bottom:0;left:0;z-index:1;background-size:cover;}
+.bgWrap div {position: fixed;top:0;right:0;bottom:0;left:0;opacity:0;background-size:cover;transition: opacity .5s;}
+.bgWrap div.active {opacity: 1;}
 .logo {
 	position: absolute;
 	top: -200px; left: 0;
@@ -137,6 +138,7 @@ body {
 .box .btns .btn2 {display: flex; width: 238px; margin: 0 auto;}
 .box .btns .btn2 a {flex: 1;margin: 0 5px;}
 .box .btns a {display: block; width: 228px; height: 40px; margin: 10px auto; padding-top: 9px; box-sizing: border-box;}
+.box .content {display: none;}
 .btnType1 {background: #000; color: #fff;}
 .btnType2 {border: 1px solid #000; color: #000;}
 .box:hover {
@@ -180,14 +182,18 @@ body {
 		</nav>
 		<div class="itemWrap">
 			<div class="inner">
-				<div class="box">
+
+				<div class="box" data-bg="images/img5.png">
 					<p class="title">약국찾기<span>findMask</span></p>
 					<span class="btns">
 						<a href="#" class="btnType1">사이트 바로가기</a>
-						<a href="#" class="btnType2">서비스 소개</a>
+						<a href="#" class="btnType2" onclick="detailShow(); return false;">서비스 소개</a>
 					</span>
+					<div class="content">
+						내용내용
+					</div>
 				</div>
-				<div class="box">
+				<div class="box" data-bg="images/img4.png">
 					<p class="title">52시간 근태관리<span>h52ls</span></p>
 					<span class="btns">
 						<span class="btn2">
@@ -197,38 +203,38 @@ body {
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
-				<div class="box">
+				<div class="box" data-bg="images/img3.png">
 					<p class="title">개발자공유플랫폼<span>PFree</span></p>
 					<span class="btns">
 						<span class="btn2">
-							<a href="https://www.naver.com" class="btnType1">IOS</a>
+							<a href="#" class="btnType1">IOS</a>
 							<a href="#" class="btnType1">android</a>
 						</span>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
-				<div class="box">
+				<div class="box" data-bg="images/img2.png">
 					<p class="title">DEV PACK<span>PC</span></p>
 					<span class="btns">
 						<a href="#" class="btnType1">사이트 바로가기</a>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
-				<div class="box">
+				<div class="box" data-bg="images/img1.png">
 					<p class="title">컨설팅 표준화 PC<span>PC</span></p>
 					<span class="btns">
 						<a href="#" class="btnType1">사이트 바로가기</a>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
-				<div class="box">
+				<div class="box" data-bg="images/img1.png">
 					<p class="title">레퍼런스01</p>
 					<span class="btns">
 						<a href="#" class="btnType1">사이트 바로가기</a>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
-				<div class="box">
+				<div class="box" data-bg="images/img1.png">
 					<p class="title">레퍼런스02</p>
 					<span class="btns">
 						<a href="#" class="btnType1">사이트 바로가기</a>
@@ -241,16 +247,9 @@ body {
 			<div class="inner" style="width: 0;"></div>
 		</div>
 	</div>
-	<div class="imgWrap">
-		<div style="background:url('images/img5.png') no-repeat;background-size:cover;opacity: 1;"></div>
-		<div style="background:url('images/img4.png') no-repeat;background-size:cover;opacity: 0;"></div>
-		<div style="background:url('images/img3.png') no-repeat;background-size:cover;opacity: 0;"></div>
-		<div style="background:url('images/img2.png') no-repeat;background-size:cover;opacity: 0;"></div>
-		<div style="background:url('images/img3.png') no-repeat;background-size:cover;opacity: 0;"></div>
-		<div style="background:url('images/img2.png') no-repeat;background-size:cover;opacity: 0;"></div>
-		<div style="background:url('images/img1.png') no-repeat;background-size:cover;opacity: 0;"></div>
-		<div style="background:url('images/img1.png') no-repeat;background-size:cover;opacity: 0;"></div>
-	</div>
+
+	<div class="bgWrap" style="background-image:url('images/img5.png');"></div> <!-- 기본 배경 이미지 -->
+
 	<script type="text/javascript">
 
 	var btnMenu = document.querySelector('.btnMenu');
@@ -259,24 +258,41 @@ body {
 	})
 
 	var movNum = 0;
-	var maxNum = 0; 
+	var maxNum = 0;
+	var wrap = document.querySelector('.wrap'); 
 	var itemWrap = document.querySelector('.itemWrap');
 	var inner = itemWrap.querySelector('.inner');
 	var box = inner.querySelectorAll('.box');
-	var img = document.querySelectorAll('.imgWrap div');
+	var bgWrap = document.querySelector('.bgWrap');
+	var bg;
 	var scrollBar = document.querySelector('.scrollBar .inner');
+	var bgSet = function(_this){
+		var bgSrc = _this.dataset.bg;
+		var html = '<div style="background-image:url('+bgSrc+');"></div>';
+		bgWrap.insertAdjacentHTML('beforeend', html);
+	}
 	var bgShow = function(idx){
-		[].forEach.call(img, function(_this){
-			_this.style.opacity = 0;
+		[].forEach.call(bg, function(_this){
+			_this.classList.remove('active');
 		});
-		img[idx].style.opacity = 1;
+		bg[idx].classList.add('active');
 	};
+	var detailShow = function(){
+		var _this = event.target;
+		var parent = _this.parentNode.parentNode;
+		var content = parent.querySelector('.content');
+		var clone = content.cloneNode(true);
+		console.log(clone);
+	};
+
 	[].forEach.call(box, function(obj, idx){
+		bgSet(obj);
 		obj.addEventListener('mouseenter', function(){
 			bgShow(idx);
 		});
+		if(box.length-1 === idx) bg = bgWrap.querySelectorAll('div');
 	});
-	window.addEventListener('wheel', function(){
+	wrap.addEventListener('wheel', function(){
 		var relNum = itemWrap.getBoundingClientRect().width;
 		var thisNum = inner.getBoundingClientRect().width;
 		maxNum = relNum-thisNum
