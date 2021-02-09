@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>title</title>
+<title>TOBESOFT</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
@@ -170,6 +170,7 @@ body {
 		padding: 0 20px;
 		overflow-x: scroll;
 	}
+	.box, .box:first-child {margin: 0 20px 0 0;}
 	.btnMenu {
 		position: fixed;
 		top: 20px; right: 20px;
@@ -200,7 +201,7 @@ body {
 				<div class="box" data-bg="images/img5.png">
 					<p class="title">약국찾기<span>findMask</span></p>
 					<span class="btns">
-						<a href="#" class="btnType1">사이트 바로가기</a>
+						<a href="http://mobiletong.tobesoft.com:85/findmask/findMask/index.html" target="_blank" class="btnType1">사이트 바로가기</a>
 						<a href="#" class="btnType2" onclick="detailShow(); return false;">서비스 소개</a>
 					</span>
 					<div class="content">
@@ -211,8 +212,8 @@ body {
 					<p class="title">52시간 근태관리<span>h52ls</span></p>
 					<span class="btns">
 						<span class="btn2">
-							<a href="#" class="btnType1">IOS</a>
-							<a href="#" class="btnType1">android</a>
+							<a href="http://mobiletong.tobesoft.com:86/h52ls/down/down.html" target="_blank" class="btnType1">apk/ipa</a>
+							<a href="http://mobiletong.tobesoft.com:86/h52ls/down/h52ls_20201124.apk" target="_blank" class="btnType1">Download</a>
 						</span>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
@@ -221,8 +222,8 @@ body {
 					<p class="title">개발자공유플랫폼<span>PFree</span></p>
 					<span class="btns">
 						<span class="btn2">
-							<a href="#" class="btnType1">IOS</a>
-							<a href="#" class="btnType1">android</a>
+							<a href="http://mobiletong.tobesoft.com:84/Pfree/downFile/Pfree.apk" target="_blank" class="btnType1">apk/ipa</a>
+							<a href="itms-services://?action=download-manifest&url=https://cacao.tobesoft.co.kr:8443/~nexacro/appbuilder/M2/tops/46/app.plist" target="_blank" class="btnType1">Download</a>
 						</span>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
@@ -230,14 +231,14 @@ body {
 				<div class="box" data-bg="images/img2.png">
 					<p class="title">DEV PACK<span>PC</span></p>
 					<span class="btns">
-						<a href="#" class="btnType1">사이트 바로가기</a>
+						<a href="http://mobiletong.tobesoft.com:83/devPack/index.html" target="_blank" class="btnType1">사이트 바로가기</a>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
 				<div class="box" data-bg="images/img1.png">
 					<p class="title">컨설팅 표준화 PC<span>PC</span></p>
 					<span class="btns">
-						<a href="#" class="btnType1">사이트 바로가기</a>
+						<a href="http://mobiletong.tobesoft.com:88/nexacro17Template/nexacro17MDI/index.html" target="_blank" class="btnType1">사이트 바로가기</a>
 						<a href="#" class="btnType2">서비스 소개</a>
 					</span>
 				</div>
@@ -324,6 +325,12 @@ body {
 		if(scrollPer > 100) scrollPer = 100;
 		scrollBar.style.cssText = 'width:'+scrollPer+'%;'
 	});
+	itemWrap.addEventListener('scroll', function(){
+		var scrollPer = this.scrollLeft / (inner.clientWidth - window.outerWidth) * 100;
+		
+		if(scrollPer > 100) scrollPer = 100;
+		scrollBar.style.cssText = 'width:'+scrollPer+'%;'
+	})
 	</script>
 </body>
 </html>
