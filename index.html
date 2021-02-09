@@ -289,6 +289,9 @@ body {
 		obj.addEventListener('mouseenter', function(){
 			bgShow(idx);
 		});
+		obj.addEventListener('touchstart', function(){
+			bgShow(idx);
+		});
 		if(box.length-1 === idx) bg = bgWrap.querySelectorAll('div');
 	});
 	wrap.addEventListener('wheel', function(){
