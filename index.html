@@ -4,6 +4,7 @@
 <title>title</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <style type="text/css">
 @font-face {
 	font-family:'noto';
@@ -159,6 +160,21 @@ body {
 	width: 0; height: 5px;
 	background: #000;
 	transition: width .5s;
+}
+@media screen and (max-width:760px) {
+	body {padding: 0 20px;}
+	.logo {top: -120px;}
+	.desc {top: -60px;}
+	.itemWrap {
+		margin: 0 -20px;
+		padding: 0 20px;
+		overflow-x: scroll;
+	}
+	.btnMenu {
+		position: fixed;
+		top: 20px; right: 20px;
+	}
+	.navWrap li a {font-size: 24px;}
 }
 </style>
 </head>
